@@ -11,18 +11,18 @@ fun main(args: Array<String>) {
         val command = reader.readLine().toLowerCase().split(" ")
         when (command[0]) {
             "help" -> {
-                println("exit - âûéòè\n" +
-                        "help - ïîêàçàòü ñïðàâêó \n" +
-                        "add <key> <value>\n" +
-                        "remove key=<key>|value=<value>\n" +
-                        "find key=<key>|value=<value>")
+                println("exit - выйти\n" +
+                        "help - показать справку\n" +
+                        "add <key> <value> - добавление пары\n" +
+                        "remove key=<key>|value=<value> - удаление пары по ключу или значению\n" +
+                        "find key=<key>|value=<value> - поиск пар по фрагменту ключа или значения")
             }
             "add" -> {
                 val key = command[1]
                 val value = command[2]
 
                 data.put(key, value)
-                println("Óñïåøíî äîáàâëåíà ïàðà $key: $value")
+                println("Успешно добавлена пара $key: $value")
             }
             "remove" -> {
                 if (command[1].split("=")[0] == "key") {
@@ -30,22 +30,22 @@ fun main(args: Array<String>) {
                     if (key in data) {
                         val value = data[key]
                         data.remove(key)
-                        println("Óñïåøíî óäàëåíà ïàðà $key: $value")
+                        println("Успешно удалена пара $key: $value")
                     } else {
-                        println("Ïàð ñ òàêèì êëþ÷îì íå ñóùåñòâóåò.")
+                        println("Пар с таким ключом не существует.")
                     }
                 } else if (command[1].split("=")[0] == "value") {
-                    val value = command[1].split("=")[1] 
+                    val value = command[1].split("=")[1]
                     if (value in data.values) {
                         for (key in data.keys) {
                             if (data[key] == value) {
                                 data.remove(key)
 
-                                println("Óñïåøíî óäàëåíà ïàðà $key: $value")
+                                println("Успешно удалена пара $key: $value")
                             }
                         }
                     } else {
-                        println("Ïàð ñ òàêèì çíà÷åíèåì íå ñóùåñòâóåò.")
+                        println("Пар с таким значением не существует.")
                     }
                 }
 
@@ -57,7 +57,7 @@ fun main(args: Array<String>) {
                     for (foundKey in data.keys) {
                         val value = data[foundKey]
                         if (key in foundKey) {
-                            println("Íàéäåíà ïàðà: $foundKey: $value")
+                            println("Найдена пара: $foundKey: $value")
                             isFound = true
                         }
                     }
@@ -66,17 +66,17 @@ fun main(args: Array<String>) {
                     for (i in data.keys) {
                         var foundValue = data[i]
                         if (foundValue != null && value in foundValue) {
-                            println("Íàéäåíà ïàðà: $i: $foundValue")
+                            println("Найдена пара: $i: $foundValue")
                             isFound = true
                         }
                     }
                 }
                 if (!isFound) {
-                    print("Íè÷åãî íå íàéäåíî")
+                    print("Ничего не найдено.")
                 }
             }
             else -> {
-                println("Íåèçâåñòíàÿ êîìàíäà. Èñïîëüçóéòå êîìàíäó help äëÿ ïîëó÷åíèÿ ñïðàâêè.")
+                println("Неизвестная команда. Используйте команду help для получения справки.")
             }
         }
     } while (command[0] != "exit")
