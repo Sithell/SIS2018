@@ -11,8 +11,8 @@ fun main(args: Array<String>) {
         val command = reader.readLine().toLowerCase().split(" ")
         when (command[0]) {
             "help" -> {
-                println("exit - выйти\n" +
-                        "help - показать справку \n" +
+                println("exit - ГўГ»Г©ГІГЁ\n" +
+                        "help - ГЇГ®ГЄГ Г§Г ГІГј Г±ГЇГ°Г ГўГЄГі \n" +
                         "add <key> <value>\n" +
                         "remove key=<key>|value=<value>\n" +
                         "find key=<key>|value=<value>")
@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
                 val value = command[2]
 
                 data.put(key, value)
-                println("Успешно добавлена пара $key: $value")
+                println("Г“Г±ГЇГҐГёГ­Г® Г¤Г®ГЎГ ГўГ«ГҐГ­Г  ГЇГ Г°Г  $key: $value")
             }
             "remove" -> {
                 if (command[1].split("=")[0] == "key") {
@@ -30,22 +30,22 @@ fun main(args: Array<String>) {
                     if (key in data) {
                         val value = data[key]
                         data.remove(key)
-                        println("Успешно удалена пара $key: $value")
+                        println("Г“Г±ГЇГҐГёГ­Г® ГіГ¤Г Г«ГҐГ­Г  ГЇГ Г°Г  $key: $value")
                     } else {
-                        println("Пар с таким ключом не существует.")
+                        println("ГЏГ Г° Г± ГІГ ГЄГЁГ¬ ГЄГ«ГѕГ·Г®Г¬ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.")
                     }
                 } else if (command[1].split("=")[0] == "value") {
-                    val value = command[1].split("=")[1]
+                    val value = command[1].split("=")[1] 
                     if (value in data.values) {
                         for (key in data.keys) {
                             if (data[key] == value) {
                                 data.remove(key)
 
-                                println("Успешно удалена пара $key: $value")
+                                println("Г“Г±ГЇГҐГёГ­Г® ГіГ¤Г Г«ГҐГ­Г  ГЇГ Г°Г  $key: $value")
                             }
                         }
                     } else {
-                        println("Пар с таким значением не существует.")
+                        println("ГЏГ Г° Г± ГІГ ГЄГЁГ¬ Г§Г­Г Г·ГҐГ­ГЁГҐГ¬ Г­ГҐ Г±ГіГ№ГҐГ±ГІГўГіГҐГІ.")
                     }
                 }
 
@@ -57,7 +57,7 @@ fun main(args: Array<String>) {
                     for (foundKey in data.keys) {
                         val value = data[foundKey]
                         if (key in foundKey) {
-                            println("Найдена пара: $foundKey: $value")
+                            println("ГЌГ Г©Г¤ГҐГ­Г  ГЇГ Г°Г : $foundKey: $value")
                             isFound = true
                         }
                     }
@@ -66,17 +66,17 @@ fun main(args: Array<String>) {
                     for (i in data.keys) {
                         var foundValue = data[i]
                         if (foundValue != null && value in foundValue) {
-                            println("Найдена пара: $i: $foundValue")
+                            println("ГЌГ Г©Г¤ГҐГ­Г  ГЇГ Г°Г : $i: $foundValue")
                             isFound = true
                         }
                     }
                 }
                 if (!isFound) {
-                    print("Ничего не найдено")
+                    print("ГЌГЁГ·ГҐГЈГ® Г­ГҐ Г­Г Г©Г¤ГҐГ­Г®")
                 }
             }
             else -> {
-                println("Неизвестная команда. Используйте команду help для получения справки.")
+                println("ГЌГҐГЁГ§ГўГҐГ±ГІГ­Г Гї ГЄГ®Г¬Г Г­Г¤Г . Г€Г±ГЇГ®Г«ГјГ§ГіГ©ГІГҐ ГЄГ®Г¬Г Г­Г¤Гі help Г¤Г«Гї ГЇГ®Г«ГіГ·ГҐГ­ГЁГї Г±ГЇГ°Г ГўГЄГЁ.")
             }
         }
     } while (command[0] != "exit")
