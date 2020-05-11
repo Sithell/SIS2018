@@ -29,5 +29,5 @@
     > remove key=key1
     Ничего не найдено.
 
-    > shit hahaha
+    > foo bar
     Неизвестная команда
